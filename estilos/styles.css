@@ -16,7 +16,7 @@ body {
 header {
   background-color: #333;
   color: #fff;
-  padding: 1rem 2rem;
+  padding: 4px 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -132,81 +132,120 @@ nav ul li a {
 /* ============================= */
 /*        SECCIÓN SERVICIOS      */
 /* ============================= */
-.services {
-  padding: 2rem;
-  text-align: center;
+.beauty-service-cards {
+  padding: 60px 20px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.services h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+.service-cards-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
 }
 
-.service-list {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.service-item {
-  width: 260px;
-  height: 320px;
+/* Estilo de tarjetas */
+.service-card {
   position: relative;
-  text-align: center;
+  height: 250px;
+  border-radius: 15px;
   overflow: hidden;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.service-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* Imagen de fondo del servicio */
-.service-gif {
+.card-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  background: linear-gradient(to top, rgba(209, 77, 114, 0.7) 0%, rgba(209, 77, 114, 0.3) 50%, transparent 100%);
+  transition: all 0.3s ease;
 }
 
-.service-item:hover .service-gif {
-  opacity: 1;
+.service-card:hover .card-overlay {
+  background: linear-gradient(to top, rgba(209, 77, 114, 0.8) 0%, rgba(209, 77, 114, 0.4) 50%, transparent 100%);
 }
 
-.service-gif img {
+/* Contenido de la tarjeta */
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 30px;
+  color: white;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-top: 10px;
 }
 
-.service-content {
-  position: absolute;
-  padding: 1rem;
-  text-align: center;
+.card-title {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.service-item:hover .service-content {
-  opacity: 0;
+.card-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
-.service-item h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+/* Responsive */
+@media (max-width: 992px) {
+  .service-cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 }
 
-.service-item p {
-  font-size: 0.9rem;
-  color: #555;
+@media (max-width: 768px) {
+  .beauty-service-cards {
+    padding: 40px 15px;
+  }
+  
+  .service-card {
+    height: 220px;
+  }
+  
+  .card-content {
+    padding: 25px;
+  }
+  
+  .card-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-cards-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .service-card {
+    height: 200px;
+  }
+  
+  .card-content {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+  }
+  
+  .card-description {
+    font-size: 0.9rem;
+  }
 }
 
 /* ============================= */
@@ -214,8 +253,14 @@ nav ul li a {
 /* ============================= */
 .detailed-services {
   padding: 2rem;
+  margin-block-start: 10px;
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .service-detail {
@@ -223,6 +268,10 @@ nav ul li a {
   align-items: center;
   margin-bottom: 3rem;
   gap: 2rem;
+}
+
+.service-detail:nth-child(odd) {
+  flex-direction: row-reverse;
 }
 
 .service-info {
@@ -272,85 +321,352 @@ nav ul li a {
 /*       SECCIÓN TESTIMONIOS     */
 /* ============================= */
 .testimonials {
-  padding: 2rem;
-  text-align: center;
-  background-color: #f1f1f1;
+  padding: 60px 0;
+  background-color: #f9f3f0; /* Color suave que combina con salones de belleza */
+  font-family: 'Montserrat', sans-serif;
 }
 
-.carousel {
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: #5d3a3a; /* Color marrón suave */
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Estilos del carrusel */
+.testimonials-carousel {
   position: relative;
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
   overflow: hidden;
 }
 
-.carousel-inner {
+.testimonial-slider {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease;
 }
 
-.carousel-item {
+.testimonial-slide {
   min-width: 100%;
+  padding: 0 15px;
   box-sizing: border-box;
+}
+
+.testimonial-content {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  height: 100%;
 }
 
-.carousel-item img {
-  width: 100%;
+.client-image {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+  border: 3px solid #e8c4c4; /* Borde rosado suave */
 }
 
-.carousel-control-prev,
-.carousel-control-next {
+.client-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.client-comment {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.client-name {
+  font-weight: 600;
+  color: #5d3a3a;
+  margin-bottom: 10px;
+}
+
+.client-rating {
+  color: #ffc107; /* Color dorado para las estrellas */
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Controles del carrusel */
+.carousel-control {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  background: rgba(232, 196, 196, 0.7);
   border: none;
-  padding: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
   cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-.carousel-control-prev {
+.carousel-control:hover {
+  background: #e8c4c4;
+}
+
+.prev {
   left: 10px;
 }
 
-.carousel-control-next {
+.next {
   right: 10px;
+}
+
+/* Indicadores */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.carousel-indicators span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d8b6b6;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.carousel-indicators span.active {
+  background: #5d3a3a;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .testimonial-content {
+    flex-direction: row;
+    text-align: left;
+    padding: 40px;
+  }
+  
+  .client-image {
+    margin-right: 30px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  
+  .section-title {
+    font-size: 3rem;
+  }
+  
+  .carousel-control {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  .testimonial-slide {
+    padding: 0 30px;
+  }
 }
 
 /* ============================= */
 /*        SECCIÓN CONTACTO       */
 /* ============================= */
-.contact {
-  padding: 2rem;
-  text-align: center;
+.beauty-contact-form {
+  padding: 60px 20px;
+  background: #fff9fb;
+  font-family: 'Poppins', sans-serif;
 }
 
-.contact form {
-  max-width: 400px;
+.form-container {
+  max-width: 600px;
   margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(209, 77, 114, 0.1);
+}
+
+.form-title {
+  color: #d14d72;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.form-subtitle {
+  color: #666;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+/* Estilos del formulario */
+.beauty-form {
   display: flex;
   flex-direction: column;
+  gap: 25px;
 }
 
-.contact input,
-.contact textarea {
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.form-group {
+  position: relative;
 }
 
-.contact button {
-  background-color: #ff6f61;
-  color: #fff;
-  padding: 0.75rem;
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 15px 0 5px 0;
   border: none;
-  border-radius: 5px;
+  border-bottom: 1px solid #e0e0e0;
+  background: transparent;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
   cursor: pointer;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-group label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  color: #999;
+  font-size: 16px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.form-group .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #d14d72;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+}
+
+.form-group input:focus ~ label,
+.form-group input:valid ~ label,
+.form-group select:focus ~ label,
+.form-group select:valid ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:valid ~ label {
+  top: -12px;
+  font-size: 12px;
+  color: #d14d72;
+}
+
+.form-group input:focus ~ .underline,
+.form-group select:focus ~ .underline,
+.form-group textarea:focus ~ .underline {
+  width: 100%;
+}
+
+/* Estilos para el botón de enviar */
+.submit-btn {
+  background: linear-gradient(45deg, #d14d72, #f8c6d5);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(209, 77, 114, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(209, 77, 114, 0.4);
+  background: linear-gradient(45deg, #c03a68, #f8c6d5);
+}
+
+.submit-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.submit-btn:hover svg {
+  transform: translateX(5px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 30px 20px;
+  }
+  
+  .form-title {
+    font-size: 1.8rem;
+  }
+  
+  .beauty-form {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .beauty-contact-form {
+    padding: 40px 15px;
+  }
+  
+  .form-title {
+    font-size: 1.5rem;
+  }
+  
+  .form-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .submit-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
 }
 
 /* ============================= */
@@ -404,3 +720,4 @@ footer .social-links a {
   margin-top: 1rem;
   display: inline-block;
 }
+
